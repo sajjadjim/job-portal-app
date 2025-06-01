@@ -6,6 +6,8 @@ import RootLayouts from "../Layouts/RootLayouts";
 import Home from "../Components/Home/Home";
 import Register from "../Components/Login and Register/Register/Register";
 import Login from "../Components/Login and Register/Login/Login";
+import JobDetails from "../Components/Home/HotJobs/Job/JobDetails/JobDetails";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +23,11 @@ const router = createBrowserRouter([
     },{
         path:'/login',
         Component:Login
+    },
+    {
+    path:'/jobs/:id',
+    loader: ({params}) => fetch(`https://server-code-job-website.vercel.app/jobs/${params.id}`),
+    Component:JobDetails
     }
    ]
   },

@@ -5,8 +5,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_apiKey,
-  authDomain: import.meta.env.VITE_authDomain,
+  apiKey: "AIzaSyAdgFk13CIFEsuVto1aInegMhy8wwVLZ3U",
+  authDomain: "job-portal-d07d2.firebaseapp.com",
   projectId: "job-portal-d07d2",
   storageBucket: "job-portal-d07d2.firebasestorage.app",
   messagingSenderId: "41231123816",
