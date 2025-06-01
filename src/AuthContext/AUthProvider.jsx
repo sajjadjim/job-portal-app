@@ -1,6 +1,6 @@
 import React, {  useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signOut} from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut} from 'firebase/auth';
 import {auth} from '../Firebase/Firebase.init'
 
 const AUthProvider = ({ children }) => {
@@ -26,19 +26,19 @@ const AUthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-//     // gign with in google part -------------------------------------------
-// const googleProvider = new GoogleAuthProvider();
+//     // sign with in google part -------------------------------------------
+const googleProvider = new GoogleAuthProvider();
 
-// const signInWithGoogle = () => {
-//   return signInWithPopup(auth, googleProvider);
-// };
+const signInWithGoogle = () => {
+  return signInWithPopup(auth, googleProvider);
+};
     //-----------------------------------------------------------------------------------
     // on state change current user information show onm website 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
               setLoading(false);
-            console.log("Curent user on " , currentUser)
+            // console.log("Curent user on " , currentUser)
         });
         return () => {
             unsubscribe();
@@ -52,7 +52,7 @@ const AUthProvider = ({ children }) => {
         createUser,
         user,
         signIn,
-        // signInWithGoogle,
+        signInWithGoogle,
         signOutUser,
     };
 

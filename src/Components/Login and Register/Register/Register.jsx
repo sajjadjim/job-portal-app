@@ -34,7 +34,7 @@ const Register = () => {
                                 <label className="label">Password</label>
                                 <input name='password' type="password" className="input" placeholder="Password" />
                                 <div><a className="link link-hover">Forgot password?</a></div>
-                                <Link to='/'><button className="btn btn-neutral mt-4">Login</button></Link>
+                                <Link to='/'><button className="btn btn-neutral mt-4">Register</button></Link>
                             </fieldset>
                         </form>
                     </div>

@@ -1,18 +1,22 @@
 import Lottie from 'lottie-react';
-import React, { use } from 'react';
+import React, { use, useEffect } from 'react';
 import registerLottie from '../../../../public/login.json'
 import { AuthContext } from '../../../AuthContext/AuthContext';
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from 'react-router';
 import { useLocation } from 'react-router';
+import { toast, ToastContainer } from 'react-toastify';
 const Login = () => {
 
+    useEffect(()=>{
+        document.title = 'Login - Find Your Job'
+    })
     // user navigate the Login where he/she send the website and Log in again send their 
     const location = useLocation()
     const navigate = useNavigate()
     const from = location.state || '/';
 
-    const { signIn } = use(AuthContext)
+    const { signIn, signInWithGoogle } = use(AuthContext)
     const handleLogInButton = (e) => {
         e.preventDefault();
         const email = e.target.email.value
@@ -27,8 +31,27 @@ const Login = () => {
             console.log(error)
         })
     }
+
+
+    // --------------------------------------------------------
+    // sign in with google here part code ----------------------
+    const signInGoogle = () => {
+        signInWithGoogle()
+            .then((result) => {
+                // The signed-in user info.
+                const user = result.user;
+                console.log('Google User:', user);
+                toast.success("Signed in with Google ✅");
+            })
+            .catch((error) => {
+                console.error('Google sign-in error:', error);
+                toast.error("Google Sign-in failed ❌");
+            });
+    };
+
     return (
         <div className="hero items-center my-30">
+            <ToastContainer />
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <Lottie className='w-100' animationData={registerLottie} loop={true}></Lottie>
@@ -47,7 +70,11 @@ const Login = () => {
                         </form>
                         <div className=" text-center">
                             <p className="text-sm text-gray-600 mb-2">Or sign in with</p>
-                            <button
+                            <button onClick={() => {
+                                signInGoogle().then(() => {
+                                    navigate('/');
+                                });
+                            }}
                                 className="w-full flex items-center justify-center space-x-2 bg-white py-2 rounded-xl border border-gray-300 hover:shadow-md transition">
                                 <FcGoogle />
                                 <span>Sign in with Google</span>

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router';
 import { useLoaderData } from 'react-router';
 
 const JobDetails = () => {
-    
+useEffect(()=>{
+    document.title = 'Job Details - Find Your Job';
+})
+
     const jobData = useLoaderData();
     // console.log(jobData)
-    const {_id, title, jobType, description, category, requirements, status, company_logo } = jobData;
+    const { _id, title, jobType, description, category, requirements, status, company_logo } = jobData;
     return (
         <div style={{
             maxWidth: '600px',
