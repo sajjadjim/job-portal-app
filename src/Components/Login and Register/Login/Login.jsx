@@ -3,8 +3,15 @@ import React, { use } from 'react';
 import registerLottie from '../../../../public/login.json'
 import { AuthContext } from '../../../AuthContext/AuthContext';
 import { FcGoogle } from "react-icons/fc";
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { useLocation } from 'react-router';
 const Login = () => {
+
+    // user navigate the Login where he/she send the website and Log in again send their 
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state || '/';
+
     const { signIn } = use(AuthContext)
     const handleLogInButton = (e) => {
         e.preventDefault();
@@ -14,6 +21,8 @@ const Login = () => {
 
         signIn(email, password).then(result => {
             console.log(result)
+            // here the navigate function call after successfully login 
+            navigate(from)
         }).catch(error => {
             console.log(error)
         })

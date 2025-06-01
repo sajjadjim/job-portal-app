@@ -30,7 +30,7 @@ const Job = ({ job }) => {
 
             </div>
             <div className='flex justify-end m-1'> 
-                <Link to={`/jobs/${_id}`}><button className='btn w-auto btn-primary'>Apply Now</button></Link>
+                <Link to={`/jobs/${_id}`}><button className='btn w-auto btn-primary'>More Details</button></Link>
             </div>
         </div>
     );

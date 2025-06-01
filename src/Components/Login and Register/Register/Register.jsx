@@ -2,6 +2,7 @@ import Lottie from 'lottie-react';
 import React, { use } from 'react';
 import registerLottie from '../../../../public/Animation - 1748189273589.json'
 import { AuthContext } from '../../../AuthContext/AuthContext';
+import { Link } from 'react-router';
 const Register = () => {
 
     const {createUser} = use(AuthContext)
@@ -33,7 +34,7 @@ const Register = () => {
                                 <label className="label">Password</label>
                                 <input name='password' type="password" className="input" placeholder="Password" />
                                 <div><a className="link link-hover">Forgot password?</a></div>
-                                <button className="btn btn-neutral mt-4">Login</button>
+                                <Link to='/'><button className="btn btn-neutral mt-4">Login</button></Link>
                             </fieldset>
                         </form>
                     </div>

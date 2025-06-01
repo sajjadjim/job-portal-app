@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { useLoaderData } from 'react-router';
 
 const JobDetails = () => {
     
     const jobData = useLoaderData();
     // console.log(jobData)
-    const { title, jobType, description, category, requirements, status, company_logo } = jobData;
+    const {_id, title, jobType, description, category, requirements, status, company_logo } = jobData;
     return (
         <div style={{
             maxWidth: '600px',
@@ -76,6 +77,7 @@ const JobDetails = () => {
                     {status}
                 </span>
             </div>
+            <Link to={`/jobApply/${_id}`}><button className='btn btn-primary'>Apply</button></Link>
         </div>
     );
 };
