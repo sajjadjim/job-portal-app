@@ -3,6 +3,7 @@ import Job from './Job/Job';
 
 const HotJobs = () => {
     const [jobs, setJobs] = useState([]);
+    // Define a state for loading data 
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -18,24 +19,28 @@ const HotJobs = () => {
             });
     }, []);
 
+    // Data Loading Button ADD 
     if (loading) {
-        return <div>Loading jobs...</div>;
+        return <div className='flex justify-center items-center h-screen'>
+            {/* loading button add here  */}
+            <button className="btn loading">loading</button>
+        </div>
     }
 
     return (
         <div className='mt-10'>
-           <div className='grid grid-cols-3 gap-5'>
-             {
-                jobs.map(job => (
-                    <div
-                        key={job.id}
-                        className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
-                    >
-                        <Job job={job} />
-                    </div>
-                ))
-            }
-           </div>
+            <div className='grid grid-cols-3 gap-5'>
+                {
+                    jobs.map(job => (
+                        <div
+                            key={job._id}
+                            className="transition-transform duration-200 hover:scale-105 hover:shadow-lg"
+                        >
+                            <Job job={job} />
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     );
 };

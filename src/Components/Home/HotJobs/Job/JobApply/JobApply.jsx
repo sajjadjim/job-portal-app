@@ -26,7 +26,7 @@ const JobApply = () => {
                 console.log("AFter data add to the DB", data)
                 if (data.insertedId) {
                     Swal.fire({
-                        title: "Coffee Added successfully 🍵🍵🍵",
+                        title: "Application Added successfully 🈸🈸🈸",
                         icon: "success",
                         draggable: true
                     });
