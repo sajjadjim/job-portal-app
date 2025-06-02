@@ -23,8 +23,13 @@ const Navbar = () => {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <Link to='/'><p className='btn btn-secondary'>Home</p></Link>
-      <Link><p className='btn btn-primary'>About</p></Link>
+        <Link to='/'><p className='btn '>Home</p></Link>
+      <Link><p className='btn '>About</p></Link>
+       {
+        user && <>
+         <Link to='/myApplications'><p className='btn '>My Application</p></Link>
+        </>
+      }
       </ul>
     </div>
     <a className="btn btn-ghost text-xl">Find Your Job</a>
@@ -33,6 +38,11 @@ const Navbar = () => {
     <ul className="menu menu-horizontal px-1 flex  gap-5">
       <Link to='/'><p className='btn btn-secondary'>Home</p></Link>
       <Link><p className='btn btn-primary'>About</p></Link>
+      {
+        user && <>
+         <Link to='/myApplications'><p className='btn btn-primary'>My Application</p></Link>
+        </>
+      }
     </ul>
   </div>
   <div className="navbar-end">

@@ -1,37 +1,58 @@
 import React from 'react';
 import UseAuth from '../../../../../Hooks/UseAuth';
 import Swal from 'sweetalert2';
+import axios, { Axios } from 'axios';
+import { useParams } from 'react-router';
 
 const JobApply = () => {
 
+// Take the params use and get the url information 
+    const {id : jobId} = useParams()
+    // console.log(jobId)
+
     const { user } = UseAuth()
-    console.log(user)
+    // console.log(user)
     const handdleAppply = (e) => {
         e.preventDefault();
         const github = e.target.github.value;
         const linkedin = e.target.linkedin.value;
         const cv = e.target.cv.value;
-        const applicantInfo = { github, linkedin, cv, email: user?.email }
-        console.log(applicantInfo)
+        const applicantInfo = { github, linkedin, cv, email: user?.email  , jobId :jobId  }
+        // console.log(applicantInfo)
         // Data send to the MongoDB Here code 
-        fetch('https://server-code-job-website.vercel.app/applications', {
-            method: "POST",
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(applicantInfo)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log("AFter data add to the DB", data)
-                if (data.insertedId) {
+        
+        axios.post('https://server-code-job-website.vercel.app/applications', applicantInfo)
+        .then(res => {
+            // console.log(res.data)
+              if (res.data.insertedId) {
                     Swal.fire({
                         title: "Application Added successfully 🈸🈸🈸",
                         icon: "success",
                         draggable: true
                     });
                 }
-            })
+        })
+        .catch(error => {
+            alert("Error adding application:", error);
+        });
+        // fetch('https://server-code-job-website.vercel.app/applications', {
+        //     method: "POST",
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(applicantInfo)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log("AFter data add to the DB", data)
+        //         if (data.insertedId) {
+        //             Swal.fire({
+        //                 title: "Application Added successfully 🈸🈸🈸",
+        //                 icon: "success",
+        //                 draggable: true
+        //             });
+        //         }
+        //     })
     }
 
     return (
