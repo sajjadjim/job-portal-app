@@ -43,6 +43,11 @@ const Navbar = () => {
          <Link to='/myApplications'><p className='btn btn-primary'>My Application</p></Link>
         </>
       }
+       {
+        user && <>
+         <Link to='/addjob'><p className='btn btn-primary'>Add Job</p></Link>
+        </>
+      }
     </ul>
   </div>
   <div className="navbar-end">
