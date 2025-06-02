@@ -1,17 +1,17 @@
-import React, {  useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut} from 'firebase/auth';
-import {auth} from '../Firebase/Firebase.init'
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { auth } from '../Firebase/Firebase.init'
 
 const AUthProvider = ({ children }) => {
 
-    
+
     const [loading, setLoading] = useState(true);
- const [user , setUser] = useState(null);
+    const [user, setUser] = useState(null);
     // Email and password user create 
     const createUser = (email, password) => {
         setLoading(true)
-        return createUserWithEmailAndPassword( auth ,email, password)
+        return createUserWithEmailAndPassword(auth, email, password)
     };
 
     // user sign out function here do  ------------------------------------
@@ -26,19 +26,18 @@ const AUthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-//     // sign with in google part -------------------------------------------
-const googleProvider = new GoogleAuthProvider();
+    //     // sign with in google part -------------------------------------------
+    const googleProvider = new GoogleAuthProvider();
 
-const signInWithGoogle = () => {
-  return signInWithPopup(auth, googleProvider);
-};
+    const signInWithGoogle = () => {
+        return signInWithPopup(auth, googleProvider);
+    };
     //-----------------------------------------------------------------------------------
     // on state change current user information show onm website 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-              setLoading(false);
-            // console.log("Curent user on " , currentUser)
+            setLoading(false);
         });
         return () => {
             unsubscribe();
