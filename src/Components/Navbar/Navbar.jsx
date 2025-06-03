@@ -46,6 +46,7 @@ const Navbar = () => {
        {
         user && <>
          <Link to='/addjob'><p className='btn btn-primary'>Add Job</p></Link>
+         <Link to='/myPostedJobs'><p className='btn btn-primary'>My Posted Job</p></Link>
         </>
       }
     </ul>

@@ -11,6 +11,9 @@ import PrivateRoutes from "../Routes/PrivateRoutes";
 import JobApply from "../Components/Home/HotJobs/Job/JobApply/JobApply";
 import MyApplications from "../Components/Home/HotJobs/Job/User Applications/MyApplications";
 import AddJob from "../Components/Home/AddJob/AddJob";
+import MyPostedJob from "../Components/Home/My Posted Jobs/MyPostedJob";
+import ViewJobApplicationRequest from "../Components/Home/HotJobs/Job/Job Application/ViewJobApplicationRequest";
+
 
 const router = createBrowserRouter([
   {
@@ -43,6 +46,14 @@ const router = createBrowserRouter([
     },{
       path:'/addjob',
       element:<PrivateRoutes><AddJob></AddJob></PrivateRoutes>
+    },{
+      path:'/myPostedJobs',
+      element:<PrivateRoutes><MyPostedJob></MyPostedJob></PrivateRoutes>
+    },
+    {
+      path:'applications/:job_id',
+      loader: ({params})=> fetch(`https://server-code-job-website.vercel.app/applications/job/${params.job_id}`),
+      element: <PrivateRoutes><ViewJobApplicationRequest></ViewJobApplicationRequest></PrivateRoutes>
     }
    ]
   },

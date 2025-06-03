@@ -1,6 +1,7 @@
 import React from 'react';
 import { AuthContext } from '../../../AuthContext/AuthContext';
 import { use } from 'react';
+import axios from 'axios';
 
 const AddJobForm = () => {
     const { user } = use(AuthContext)
@@ -17,8 +18,17 @@ const AddJobForm = () => {
         const requirementsString = newJob.requirements;
         const requirementsArray = requirementsString.split(',').map(req => req.trim());
         newJob.requirements = requirementsArray;
-        console.log(newJob)
+        // console.log(newJob)
         e.target.reset(); // Reset form
+
+    axios.post('https://server-code-job-website.vercel.app/jobs', newJob)
+    .then(res =>{
+        console.log(res)
+    })
+    .catch(error =>{
+        alert(error.massage);
+        console.error('Error adding job:', error);
+    })
     };
 
     return (
