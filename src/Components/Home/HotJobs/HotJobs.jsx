@@ -7,7 +7,7 @@ const HotJobs = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('https://server-code-job-website.vercel.app/jobs')
+        fetch('http://localhost:3000/jobs')
             .then(res => res.json())
             .then(data => {
                 setJobs(data);
