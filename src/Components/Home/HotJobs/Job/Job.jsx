@@ -3,13 +3,13 @@ import { Link } from 'react-router';
 
 const Job = ({ job }) => {
 
-    const { title, jobType, description, category, requirements, status, company_logo  , _id} = job
+    const { title, jobType, description, category, requirements, status   , _id} = job
     // console.log(job)
     return (
         <div className="card bg-base-100 w-96 shadow-sm">
             <figure>
                 <img
-                    src={company_logo}
+                    src={`job.company_logo`}
                     alt={title} />
             </figure>
             <div className="card-body">

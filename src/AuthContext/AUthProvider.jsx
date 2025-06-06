@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.init'
+import axios from 'axios';
 
 const AUthProvider = ({ children }) => {
 
@@ -38,6 +39,21 @@ const AUthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             setLoading(false);
+            if(currentUser?.email){
+                const userData = {email : currentUser.email}
+                axios.post('https://server-code-job-website.vercel.app/jwt' , userData ,{
+                    withCredentials:true,
+                })
+                .then(res =>{
+                    console.log("Token Giver After JWT ",res.data)
+                    // Local Storage Token use code 
+                    // const token = res.data.token
+                    // localStorage.setItem("Token " , token)
+                }).catch(error=>{
+                    console.log(error)
+                })
+            }
+            // console.log(currentUser)
         });
         return () => {
             unsubscribe();
