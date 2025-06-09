@@ -21,7 +21,7 @@ const JobApply = () => {
         // console.log(applicantInfo)
         // Data send to the MongoDB Here code 
         
-        axios.post('http://localhost:3000/applications', applicantInfo)
+        axios.post('https://server-code-job-website.vercel.app/applications', applicantInfo)
         .then(res => {
             // console.log(res.data)
               if (res.data.insertedId) {
@@ -35,7 +35,7 @@ const JobApply = () => {
         .catch(error => {
             alert("Error adding application:", error);
         });
-        // fetch('http://localhost:3000/applications', {
+        // fetch('https://server-code-job-website.vercel.app/applications', {
         //     method: "POST",
         //     headers: {
         //         'content-type': 'application/json'

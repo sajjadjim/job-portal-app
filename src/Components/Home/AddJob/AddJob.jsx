@@ -21,7 +21,7 @@ const AddJobForm = () => {
         // console.log(newJob)
         e.target.reset(); // Reset form
 
-    axios.post('http://localhost:3000/jobs', newJob)
+    axios.post('https://server-code-job-website.vercel.app/jobs', newJob)
     .then(res =>{
         console.log(res)
     })
