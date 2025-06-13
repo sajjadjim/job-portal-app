@@ -9,11 +9,12 @@ import { myApplicationsPromise } from '../../../../../Api Loading Data/Applicati
 const MyApplications = () => {
 
     const {user} =UseAuth()
-
+//  console.log(user.accessToken)
+//  console.log("My name is JIM")
     return (
         <div>
             <Suspense fallback={<div className="flex justify-center items-center h-screen"><button className="btn loading">Loading Applications...</button></div>}>
-                <ApplicationsList myApplications={myApplicationsPromise(user.email)}></ApplicationsList>
+                <ApplicationsList myApplications={myApplicationsPromise(user.email , user.accessToken)}></ApplicationsList>
             </Suspense>
         </div>
     );
